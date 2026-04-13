@@ -9,19 +9,23 @@ public class Player {
         this.maxHp = 100; this.hp  = 100;
         this.maxMp = 50;  this.mp  = 50;
     }
+
+    // [OVERLOAD 1] Serangan fisik dasar
     public int attack() {
         int dmg = (int)(Math.random() * 12) + 8;
         System.out.println("   ⚔️  [OVERLOAD 1] attack() — Serangan fisik dasar!");
         return dmg;
     }
-    
+
+    // [OVERLOAD 2] Serangan magis (Tadi bagian ini yang hilang kepalanya)
+    public int attack(int power) {
         if (!useMp(10)) return 0;
         int dmg = (int)(power * (0.9 + Math.random() * 0.4));
         System.out.println("   ✨ [OVERLOAD 2] attack(" + power + ") — Serangan magis bertenaga!");
         return dmg;
     }
 
-    // Versi 3: attack(int power, String element) — serangan elemen, butuh lebih banyak MP
+    // [OVERLOAD 3] Serangan elemen
     public int attack(int power, String element) {
         if (!useMp(25)) return 0;
         double bonus = switch (element.toLowerCase()) {
@@ -43,7 +47,6 @@ public class Player {
         return amount;
     }
 
-    // Versi 2: heal(int amount) — pulih sejumlah tertentu, butuh MP
     public int heal(int amount) {
         if (!useMp(15)) return 0;
         hp = Math.min(maxHp, hp + amount);
